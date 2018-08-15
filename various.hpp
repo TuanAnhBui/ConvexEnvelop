@@ -17,8 +17,8 @@
 
 
 std::vector<Matrix<int>> intersection(std::vector<Matrix<int>> &v1, std::vector<Matrix<int>> &v2);
-bool isSameOrbit(Cell,Cell,Cell);
-void connectToCenter(Cell tau,Cell sigma,std::vector<std::vector<Cell>> cellList);
+Matrix<int> isSameOrbit(Cell,Cell,Cell);
+Cell connectToCenter(Cell tau,Cell sigma,std::vector<std::vector<Cell>> cellList);
 
 
 #endif /* various_hpp */

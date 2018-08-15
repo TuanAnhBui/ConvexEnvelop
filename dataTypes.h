@@ -23,6 +23,7 @@ public: // interface
     Matrix(): Matrix(1,1) {}
     Matrix(int r, int c): row(r), col(c), data(r, std::vector<T>(c)) {}
     
+    
     int nrow=row;
     int ncol=col;
     

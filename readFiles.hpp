@@ -20,6 +20,7 @@
 //#include "globalVars.h"
 
 extern std::vector<std::vector <Cell>> newOrbit;
+extern std::vector<std::vector <Cell>> cellBase;
 std::vector<std::vector<Cell>> readFiles(int n,int k,std::string path);
 
 #endif /* readFiles_hpp */

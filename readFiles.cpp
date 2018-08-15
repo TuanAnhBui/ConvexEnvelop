@@ -207,6 +207,7 @@ std::vector<std::vector<Cell>> readFiles(int n,int m,std::string path){
     for (int i=0;i<cellList.size();++i){
         std::vector<Cell> v={};
         newOrbit.push_back(v);
+        cellBase.push_back(v);
     }
     return cellList;
 }

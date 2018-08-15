@@ -19,6 +19,8 @@
 #include "various.hpp"
 
 std::vector<std::vector <Cell>> newOrbit;
+std::vector<std::vector <Cell>> cellBase;
+Matrix<int> IdentityMat;
 //#include "readFiles.h"
 
 
@@ -26,14 +28,18 @@ int main() {
     const std::string path="/Users/buianhtuan/Documents/ouputGAP/";
     std::vector<std::vector <Cell>> cellList,Orbit;
     cellList=readFiles(3, 1, path);
+    
 //    for (int i=0;i<cellList.size();++i){
 //        std::vector<Cell> v={};
 //        Orbit.push_back(v);
 //    }
     unsigned long N=cellList.size()-1;
+    IdentityMat=cellList[N][0].matrix;
+    
     Cell sigma=cellList[N][0];
+    Cell tau;
 
-    connectToCenter(cellList[0][0], sigma, cellList);
-
-    std::cout<<newOrbit.size();
+    tau=connectToCenter(cellList[0][0], sigma, cellList);
+    tau.display();
+    std::cout<<newOrbit[0].size();
 }

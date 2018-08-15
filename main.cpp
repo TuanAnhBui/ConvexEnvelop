@@ -41,14 +41,20 @@ int main() {
     newCell.matrix=IdentityMat;
     newCell.matrixInv=IdentityMat;
     newOrbit[0].push_back(newCell);
-    newCell.display();
+    
     Cell sigma=cellList[N][0];
     Cell tau;
     Matrix<int> T;
-//    tau=connectToCenter(cellList[0][0], sigma, cellList);
+    connectToCenter(cellList[0][1], sigma, cellList);
+    connectToCenter(cellList[0][0], sigma, cellList);
+    
+//    T=isSameOrbit(cellBase[0][0], cellList[0][1], sigma);
+    std::cout<<T.nrow;
+    std::cout<<cellBase[0].size();
+//    connectToCenter(cellList[0][0], sigma, cellList);
+    std::cout<<newOrbit[1].size();
 //    newOrbit[1][0].display();
 //    std::cout<<newOrbit[0].size();
-    T=isSameOrbit(cellList[0][0], cellList[0][1], sigma);
-    std::cout<<T.ncol;
+
     
 }

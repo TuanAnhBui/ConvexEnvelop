@@ -9,7 +9,7 @@
 #include "various.hpp"
 extern std::vector<std::vector <Cell>> newOrbit;
 extern std::vector<std::vector <Cell>> cellBase;
-//extern Matrix<int> IdentityMat;
+extern Matrix<int> IdentityMat;
 
 std::vector<Matrix<int>> intersection(std::vector<Matrix<int>> &v1, std::vector<Matrix<int>> &v2)
 {
@@ -38,44 +38,46 @@ Matrix<int> isSameOrbit(Cell tau_1,Cell tau_2,Cell sigma){
     
     return M;
 }
-//Cell connectToCenter(Cell tau,Cell sigma,std::vector<std::vector<Cell>> cellList){
-//    if(tau.dim==0){
-//        
-//        if (cellBase[0].size()==0){
-//            Cell newCell;
-//            newCell.dim=1;
-//            newCell.orbit=1;
-//            newCell.boundary.push_back(tau);
-//            newCell.boundary.push_back(newOrbit[0][0]);
-//            newCell.matrix=IdentityMat;
-//            newCell.matrixInv=IdentityMat;
-//            newCell.stabilizer=intersection(tau.stabilizer, sigma.stabilizer);
-//            newOrbit[1].push_back(newCell);
-//            cellBase[0].push_back(tau);
-//            
-//            return newCell;
-//        }else{
-//            for (int i=0;i<cellBase[0].size();++i){
-//                Matrix<int> M=isSameOrbit(tau, newOrbit[0][i], sigma);
-//                if (M.ncol!=0){
-//                    Cell newCell;
-//                    newCell.dim=1;
-//                    newCell.orbit=i;
-//                    newCell.boundary.push_back(tau);
-//                    newCell.boundary.push_back(newOrbit[0][0]);
-//                    newCell.matrix=IdentityMat;
-//                    newCell.matrixInv=IdentityMat;
-//                    newCell.stabilizer=intersection(tau.stabilizer, sigma.stabilizer);
-//                    newOrbit[1].push_back(newCell);
-//                    cellBase[0].push_back(tau);
-//                }
-//            }
-//        }
-//
-//    }else{
-//        std::vector<Cell> bdr=tau.boundary;
-//        for (int i=0;i<bdr.size();i++)
-//            Cell newCell;
-//    }
-//    return tau;
-//}
+Cell connectToCenter(Cell tau,Cell sigma,std::vector<std::vector<Cell>> cellList){
+    if(tau.dim==0){
+        
+        if (cellBase[0].size()==0){
+            Cell newCell;
+            newCell.dim=1;
+            newCell.orbit=1;
+            newCell.boundary.push_back(tau);
+            newCell.boundary.push_back(newOrbit[0][0]);
+            newCell.matrix=IdentityMat;
+            newCell.matrixInv=IdentityMat;
+            newCell.stabilizer=intersection(tau.stabilizer, sigma.stabilizer);
+            newOrbit[1].push_back(newCell);
+            cellBase[0].push_back(tau);
+            
+            return newCell;
+        }else{
+            for (int i=0;i<cellBase[0].size();++i){
+                Matrix<int> M=isSameOrbit(tau, newOrbit[0][i], sigma);
+                
+                if (M.ncol!=0){
+                    Cell newCell;
+                    newCell.dim=1;
+                    newCell.orbit=i+1;
+                    newCell.boundary.push_back(tau);
+                    newCell.boundary.push_back(newOrbit[0][0]);
+                    newCell.matrix=IdentityMat;
+                    newCell.matrixInv=IdentityMat;
+                    newCell.stabilizer=intersection(tau.stabilizer, sigma.stabilizer);
+                    newOrbit[1].push_back(newCell);
+                    cellBase[0].push_back(tau);
+                    return newCell;
+                }
+            }
+        }
+
+    }else{
+        std::vector<Cell> bdr=tau.boundary;
+        for (int i=0;i<bdr.size();i++)
+            Cell newCell;
+    }
+    return tau;
+}

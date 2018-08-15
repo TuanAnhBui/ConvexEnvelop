@@ -80,8 +80,10 @@ std::vector<std::vector<Cell>> readFiles(int n,int m,std::string path){
             }
             
             //          Update the boundary information for the jth of i-cell
-            cellList[i][j].boundary=bdr;
-            
+            if (i>0){
+                for (int s=0;s<bdr.size();++s)
+                    cellList[i][j].boundary.push_back(cellList[i-1][bdr[s]-1]);
+            }
             j++;
             bdr.clear();
         }else{
@@ -209,6 +211,7 @@ std::vector<std::vector<Cell>> readFiles(int n,int m,std::string path){
         newOrbit.push_back(v);
         cellBase.push_back(v);
     }
+
     return cellList;
 }
 

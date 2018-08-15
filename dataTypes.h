@@ -77,7 +77,7 @@ class Cell{
     std::vector<Matrix<int>> stab;
     Matrix<int> matInv;
     Matrix<int> mat;
-    std::vector<int> bdr;
+    std::vector<Cell> bdr;
 public:
     Cell(): d(0),orb{0},stab{},mat(1,1),bdr{}{};
     int dim=d;
@@ -85,7 +85,7 @@ public:
     std::vector<Matrix<int>> stabilizer=stab;
     Matrix<int> matrixInv=matInv;
     Matrix<int> matrix=mat;
-    std::vector<int> boundary=bdr;
+    std::vector<Cell> boundary=bdr;
     
     void init(std::string V){
         std::vector<int> vect;
@@ -111,9 +111,9 @@ public:
     void display(){
         std::cout<<"Dimension: "<<dim<<std::endl;
         std::cout<<"In the "<<orbit<<"th orbit"<<std::endl;
-        std::cout<<"Cells in the boundary: "<<std::endl;
-        for (int i=0;i<boundary.size();++i)
-            std::cout<<boundary[i]<<"  ";
+//        std::cout<<"Cells in the boundary: "<<std::endl;
+//        for (int i=0;i<boundary.size();++i)
+//            std::cout<<boundary[i]<<"  ";
         std::cout<<std::endl;
         std::cout<<"Elements of Stabilizer:"<<std::endl;
         for (int i=0;i<stabilizer.size();++i){

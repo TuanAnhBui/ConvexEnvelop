@@ -21,6 +21,7 @@
 
 extern std::vector<std::vector <Cell>> newOrbit;
 extern std::vector<std::vector <Cell>> cellBase;
+extern Matrix<int> IdentityMat;
 std::vector<std::vector<Cell>> readFiles(int n,int k,std::string path);
 
 #endif /* readFiles_hpp */

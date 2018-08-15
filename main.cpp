@@ -35,11 +35,20 @@ int main() {
 //    }
     unsigned long N=cellList.size()-1;
     IdentityMat=cellList[N][0].matrix;
-    
+    Cell newCell;
+    newCell.dim=0;
+    newCell.orbit=1;
+    newCell.matrix=IdentityMat;
+    newCell.matrixInv=IdentityMat;
+    newOrbit[0].push_back(newCell);
+    newCell.display();
     Cell sigma=cellList[N][0];
     Cell tau;
-
-    tau=connectToCenter(cellList[0][0], sigma, cellList);
-    tau.display();
-    std::cout<<newOrbit[0].size();
+    Matrix<int> T;
+//    tau=connectToCenter(cellList[0][0], sigma, cellList);
+//    newOrbit[1][0].display();
+//    std::cout<<newOrbit[0].size();
+    T=isSameOrbit(cellList[0][0], cellList[0][1], sigma);
+    std::cout<<T.ncol;
+    
 }

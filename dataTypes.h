@@ -20,7 +20,7 @@ class Matrix {
     std::vector<Row> data;
     
 public: // interface
-    Matrix(): Matrix(1,1) {}
+    Matrix(): Matrix(0,0) {}
     Matrix(int r, int c): row(r), col(c), data(r, std::vector<T>(c)) {}
     
     

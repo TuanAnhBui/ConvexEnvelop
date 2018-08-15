@@ -45,11 +45,12 @@ int main() {
     Cell sigma=cellList[N][0];
     Cell tau;
     Matrix<int> T;
-    connectToCenter(cellList[0][1], sigma, cellList);
-    connectToCenter(cellList[0][0], sigma, cellList);
-    
-//    T=isSameOrbit(cellBase[0][0], cellList[0][1], sigma);
-    std::cout<<T.nrow;
+    for (int i=0;i<cellList[0].size();++i)
+        connectToCenter(cellList[0][i], sigma, cellList);
+
+//    T=isSameOrbit(cellBase[0][0], cellList[0][2], sigma);
+//    connectToCenter(cellList[0][2], sigma, cellList);
+//    std::cout<<T.nrow;
     std::cout<<cellBase[0].size();
 //    connectToCenter(cellList[0][0], sigma, cellList);
     std::cout<<newOrbit[1].size();

@@ -56,7 +56,7 @@ Cell connectToCenter(Cell tau,Cell sigma,std::vector<std::vector<Cell>> cellList
             return newCell;
         }else{
             for (int i=0;i<cellBase[0].size();++i){
-                Matrix<int> M=isSameOrbit(tau, newOrbit[0][i], sigma);
+                Matrix<int> M=isSameOrbit(tau, cellBase[0][i], sigma);
                 
                 if (M.ncol!=0){
                     Cell newCell;
@@ -64,14 +64,25 @@ Cell connectToCenter(Cell tau,Cell sigma,std::vector<std::vector<Cell>> cellList
                     newCell.orbit=i+1;
                     newCell.boundary.push_back(tau);
                     newCell.boundary.push_back(newOrbit[0][0]);
-                    newCell.matrix=IdentityMat;
-                    newCell.matrixInv=IdentityMat;
-                    newCell.stabilizer=intersection(tau.stabilizer, sigma.stabilizer);
-                    newOrbit[1].push_back(newCell);
-                    cellBase[0].push_back(tau);
+                    newCell.matrix=M;
+//                    newCell.matrixInv=IdentityMat;
+//                    newCell.stabilizer=intersection(tau.stabilizer, sigma.stabilizer);
+//                    newOrbit[1].push_back(newCell);
+//                    cellBase[0].push_back(tau);
                     return newCell;
                 }
             }
+            Cell newCell;
+            newCell.dim=1;
+            newCell.orbit=int(cellBase[0].size()+1);
+            newCell.boundary.push_back(tau);
+            newCell.boundary.push_back(newOrbit[0][0]);
+            newCell.matrix=IdentityMat;
+            newCell.matrixInv=IdentityMat;
+            newCell.stabilizer=intersection(tau.stabilizer, sigma.stabilizer);
+            newOrbit[1].push_back(newCell);
+            cellBase[0].push_back(tau);
+            return newCell;
         }
 
     }else{

@@ -49,52 +49,7 @@ std::vector<std::vector<Cell>> readFiles(int n,int m,std::string path){
         }
     }
     
-    //  Read the file containing boundaries information
-    const string listOfbdr=path+to_string(m)+"thOf"+to_string(n)+"-cellsBeforeEnveloping.txt";
-    ifstream inBdr(listOfbdr);
-    if(!inBdr)
-    {
-        std::cerr << "Cannot open the File : "<<listOfbdr<<std::endl;
-        exit(0);
-    }
-    getline(inBdr,line);
-    getline(inBdr,line);
-    int i(0);
-    int j(0);
-    vector<int> bdr;
-    
-    while(!inBdr.eof()){
-        getline(inBdr,line);
-        if (!(line.size()==0)){
-            line.pop_back();
-            line.erase(line.begin());
-            std::stringstream ss(line);
-            
-            int k;
-            
-            while (ss >> k)
-            {
-                bdr.push_back(k);
-                if (ss.peek() == ',' || ss.peek()==' ')
-                    ss.ignore();
-            }
-            
-            //          Update the boundary information for the jth of i-cell
-            if (i>0){
-                for (int s=0;s<bdr.size();++s)
-                    cellList[i][j].boundary.push_back(cellList[i-1][bdr[s]-1]);
-            }
-            j++;
-            bdr.clear();
-        }else{
-            i++;
-            j=0;
-            bdr.clear();
-        }
-        
-        
-    }
-    
+
     //  Read the file containing stabilizer information
     const string listOfstab=path+to_string(m)+"thOf"+to_string(n)+"-stabilizersBeforeEnvoloping.txt";
     ifstream inStab(listOfstab);
@@ -106,8 +61,8 @@ std::vector<std::vector<Cell>> readFiles(int n,int m,std::string path){
     getline(inStab,line);
     getline(inStab,line);
     
-    i=0;
-    j=0;
+    int i=0;
+    int j=0;
     int count=0;
     
     vector<Matrix<int>> stab;
@@ -204,6 +159,52 @@ std::vector<std::vector<Cell>> readFiles(int n,int m,std::string path){
             i++;
             j=0;
             }
+        
+    }
+    
+    //  Read the file containing boundaries information
+    const string listOfbdr=path+to_string(m)+"thOf"+to_string(n)+"-cellsBeforeEnveloping.txt";
+    ifstream inBdr(listOfbdr);
+    if(!inBdr)
+    {
+        std::cerr << "Cannot open the File : "<<listOfbdr<<std::endl;
+        exit(0);
+    }
+    getline(inBdr,line);
+    getline(inBdr,line);
+    i=0;
+    j=0;
+    vector<int> bdr;
+    
+    while(!inBdr.eof()){
+        getline(inBdr,line);
+        if (!(line.size()==0)){
+            line.pop_back();
+            line.erase(line.begin());
+            std::stringstream ss(line);
+            
+            int k;
+            
+            while (ss >> k)
+            {
+                bdr.push_back(k);
+                if (ss.peek() == ',' || ss.peek()==' ')
+                    ss.ignore();
+            }
+            
+            //          Update the boundary information for the jth of i-cell
+            if (i>0){
+                for (int s=0;s<bdr.size();++s)
+                    cellList[i][j].boundary.push_back(cellList[i-1][bdr[s]-1]);
+            }
+            j++;
+            bdr.clear();
+        }else{
+            i++;
+            j=0;
+            bdr.clear();
+        }
+        
         
     }
     for (int i=0;i<cellList.size();++i){

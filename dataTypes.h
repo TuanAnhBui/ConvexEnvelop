@@ -111,9 +111,7 @@ public:
     void display(){
         std::cout<<"Dimension: "<<dim<<std::endl;
         std::cout<<"In the "<<orbit<<"th orbit"<<std::endl;
-//        std::cout<<"Cells in the boundary: "<<std::endl;
-//        for (int i=0;i<boundary.size();++i)
-//            std::cout<<boundary[i]<<"  ";
+
         std::cout<<std::endl;
         std::cout<<"Elements of Stabilizer:"<<std::endl;
         for (int i=0;i<stabilizer.size();++i){

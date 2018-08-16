@@ -29,11 +29,8 @@ int main() {
     std::vector<std::vector <Cell>> cellList,Orbit;
     cellList=readFiles(3, 1, path);
     
-//    for (int i=0;i<cellList.size();++i){
-//        std::vector<Cell> v={};
-//        Orbit.push_back(v);
-//    }
     unsigned long N=cellList.size()-1;
+    std::cout<<N<<std::endl;
     IdentityMat=cellList[N][0].matrix;
     Cell newCell;
     newCell.dim=0;
@@ -41,21 +38,11 @@ int main() {
     newCell.matrix=IdentityMat;
     newCell.matrixInv=IdentityMat;
     newOrbit[0].push_back(newCell);
-    
     Cell sigma=cellList[N][0];
-    Cell tau;
-    Matrix<int> T;
-    for (int i=0;i<cellList[0].size();++i)
-        connectToCenter(cellList[0][i], sigma, cellList);
+    for (int i=0;i<cellList[N-1].size();++i)
+        connectToCenter(cellList[N-1][i], sigma, cellList);
 
-//    T=isSameOrbit(cellBase[0][0], cellList[0][2], sigma);
-//    connectToCenter(cellList[0][2], sigma, cellList);
-//    std::cout<<T.nrow;
-    std::cout<<cellBase[0].size();
-//    connectToCenter(cellList[0][0], sigma, cellList);
-    std::cout<<newOrbit[1].size();
-//    newOrbit[1][0].display();
-//    std::cout<<newOrbit[0].size();
-
+    for (int i=0;i<4;++i)
+        std::cout<<newOrbit[i].size()<<"   ";
     
 }
